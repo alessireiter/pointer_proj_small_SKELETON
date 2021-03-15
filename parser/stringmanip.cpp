@@ -55,12 +55,11 @@ namespace KP{
 		 */
 	int replace(const char *src, char *new_src, const char *tag, const char *tag_replacement){
 
-		if (src, new_src, tag, tag_replacement == NULL) {
+		if (src == NULL || new_src == NULL || tag == NULL || tag_replacement == NULL) {
 			return INVALID_NULL_PTR_DETECTED;
 		}
 
 		int src_len = strlen(src);
-		int newsrc_len = strlen(new_src);
 		int tag_len = strlen(tag);
 		int rtag_len = strlen(tag_replacement);
 
@@ -94,22 +93,21 @@ namespace KP{
 		 *         otherwise the number of times tag occurs in src
 		 */
 	int findNumbOccurrences(const char *src,  const char *tag) {
-		if (src, tag == NULL) {
+		if (src == NULL || tag == NULL) {
 					return INVALID_NULL_PTR_DETECTED;
 				}
 
 		int lenSrc = strlen(src);
 		int lenTag = strlen(tag);
-		char *&pIter = src;
 		int count = 0;
 
 		for (int i = 0; i < lenSrc; i++) {
 				//zoom along till we find the first char
-				if (*(pIter + i) == tag[0]) {
+				if (*(src + i) == tag[0]) {
 					//found an a, lets see if it could be the start of a beautiful thing
-					if (strncmp((pIter + i), tag, lenTag) == 0) {
+					if (strncmp((src + i), tag, lenTag) == 0) {
 						//got it whohoo, now what?
-						cout << "Found \'"<<tag<<"\' in \'" << pIter << "\'" << endl;
+						cout << "Found \'"<<tag<<"\' in \'" << src << "\'" << endl;
 						count++;
 					}
 				}

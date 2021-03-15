@@ -73,5 +73,17 @@ int writeFile(std::string &filename,char *contents){
  *        SUCCESS
  */
 int readFile(std::string &filename,std::string &contents){
+	fstream myfile;
+	ios_base::openmode mode = ios_base::in;
+	bool file_opened = openFile(myfile, filename, mode);
 
+	if (!file_opened) {
+		return FAIL_CANNOT_OPEN_FILE;
+	}
+
+	getline(myfile, contents);
+
+	closeFile(myfile);
+
+	return SUCCESS;
 }
